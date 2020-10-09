@@ -37,6 +37,7 @@ function primesReverseOrder () {
 for (( i=${#array[@]}; i>=0; i-- ))
 do
 	echo "${array[i]}"
+	((i--))
 
 done
 }
