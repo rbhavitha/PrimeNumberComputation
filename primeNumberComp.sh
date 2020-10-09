@@ -9,7 +9,9 @@ checkPrime $((range))
 
 function checkPrime () {
 range=$1
-for (( i=2; i<=$(($1+1)); i++ ))
+count=1
+i=2
+while [ $count -le $range ]
 do
 	flag=0
 	for (( j=2; j<(($i/2)); j++ ))
@@ -25,8 +27,21 @@ do
 		array[$count]=$i
 		((count++))
 	fi
+	((i++))
 done
-find_Palindrome ${array[@]}
+unitPlace ${array[@]}
+}
+function unitPlace ( ) {
+unitPlace=0
+for i in ${array[@]}
+do
+	unitPlace=$(( $i%10 ))
+
+        if [ $unitPlace -eq 1 ]
+        then
+        	echo "prime which have one in unit place:" $i
+        fi
+done
 }
 function find_Palindrome ( ){
 for (( i=5; i<${#array[@]}; i++ ))
